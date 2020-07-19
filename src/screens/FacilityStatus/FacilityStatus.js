@@ -27,7 +27,7 @@ const rootRef = firebase.database().ref();
 const ladiesRef = rootRef.child("traffic/ladies");
 const menRef = rootRef.child("traffic/men");
 
-export default class HomeScreen extends React.Component {
+export default class FacilityStatus extends React.Component {
   constructor(props) {
     super(props);
     const { navigation } = this.props;

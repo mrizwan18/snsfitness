@@ -154,4 +154,36 @@ export const FacilityCard = StyleSheet.create({
     height: "100%",
     backgroundColor: colors.white,
   },
+
+  tableHeader: {
+    height: 80,
+    backgroundColor: colors.primary3,
+  },
+  tableHeaderName: {
+    height: 100,
+    backgroundColor: colors.primary0,
+    width: SCREEN_WIDTH,
+  },
+  tableText: {
+    textAlign: "center",
+    fontWeight: "100",
+  },
+  tableTextHeaderName: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 36,
+    color: colors.white,
+  },
+  tableTextHeader: {
+    textAlign: "center",
+    fontWeight: "bold",
+    color: colors.white,
+  },
+  tableDataWrapper: {
+    marginTop: -1,
+  },
+  tableRow: {
+    height: 40,
+    backgroundColor: "#E7E6E1",
+  },
 });

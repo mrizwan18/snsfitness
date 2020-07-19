@@ -22,6 +22,10 @@ export default class HomeScreen extends React.Component {
   onPressFacility = (item) => {
     this.props.navigation.navigate("FacilityStatus", { item });
   };
+
+  onPressOptions = (item) => {
+    this.props.navigation.navigate(item);
+  };
   renderFacilities = ({ item }) => (
     <View style={styles.facility}>
       <TouchableHighlight
@@ -34,7 +38,10 @@ export default class HomeScreen extends React.Component {
   );
   renderOptions = ({ item }) => (
     <View style={styles.option}>
-      <TouchableHighlight underlayColor="rgba(73,182,77,1,0.9)">
+      <TouchableHighlight
+        underlayColor="rgba(73,182,77,1,0.9)"
+        onPress={() => this.onPressOptions(item.title)}
+      >
         <Text style={styles.optionTitle}>{item.title}</Text>
       </TouchableHighlight>
     </View>
