@@ -42,6 +42,52 @@ export const FacilityCard = StyleSheet.create({
     justifyContent: "center",
     marginTop: 20,
   },
+  facilityStatusContainer: {
+    flex: 1,
+    width: SCREEN_WIDTH,
+    margin: 10,
+    justifyContent: "center",
+    marginTop: 50,
+    position: "relative",
+  },
+  facilityStatus: {
+    flex: 1,
+    flexDirection: "row",
+    width: "100%",
+  },
+  facilityStatusTitle: {
+    width: "40%",
+    fontSize: 22,
+    fontWeight: "bold",
+  },
+  facilityStatusColor: {
+    width: "24%",
+    height: 80,
+    margin: 10,
+    marginLeft: 0,
+    borderColor: colors.black,
+    borderWidth: 1,
+  },
+  facilityStatusText: {
+    flexDirection: "column",
+    width: "24%",
+    height: 80,
+    margin: 10,
+    marginLeft: -10,
+    borderColor: colors.black,
+    backgroundColor: "transparent",
+    borderWidth: 1,
+    justifyContent: "center",
+  },
+  facilityStatusGreen: {
+    backgroundColor: "green",
+  },
+  facilityStatusAmber: {
+    backgroundColor: colors.amber,
+  },
+  facilityStatusRed: {
+    backgroundColor: "red",
+  },
   option: {
     flex: 1,
     flexDirection: "column",
@@ -77,6 +123,19 @@ export const FacilityCard = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
+  h3: {
+    fontSize: 16,
+    color: colors.black,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  h4: {
+    fontSize: 12,
+    color: colors.black,
+    fontWeight: "bold",
+    textAlign: "right",
+    marginRight: 40,
+  },
   optionIcon: {
     height: 30,
     width: 30,
@@ -87,5 +146,12 @@ export const FacilityCard = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
     textTransform: "uppercase",
+  },
+  loading: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    backgroundColor: colors.white,
   },
 });

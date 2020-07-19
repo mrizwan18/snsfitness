@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import * as Font from "expo-font";
-import { AppLoading } from "expo";
+import React from "react";
 import {
   FlatList,
   ScrollView,
@@ -21,9 +19,15 @@ export default class HomeScreen extends React.Component {
     super(props);
   }
 
+  onPressFacility = (item) => {
+    this.props.navigation.navigate("FacilityStatus", { item });
+  };
   renderFacilities = ({ item }) => (
     <View style={styles.facility}>
-      <TouchableHighlight underlayColor="rgba(73,182,77,1,0.9)">
+      <TouchableHighlight
+        underlayColor="rgba(73,182,77,1,0.9)"
+        onPress={() => this.onPressFacility(item.facilityId)}
+      >
         <Text style={styles.title}>{item.title}</Text>
       </TouchableHighlight>
     </View>
