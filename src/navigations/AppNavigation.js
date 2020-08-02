@@ -5,12 +5,16 @@ import { createStackNavigator } from "react-navigation-stack";
 import HomeScreen from "../screens/Home/HomeScreen";
 import FacilityStatus from "../screens/FacilityStatus/FacilityStatus";
 import Classes from "../screens/Classes/Classes";
+import Notices from "../screens/NoticesScreen/Notices";
+import Register from "../screens/Registration/Register";
 
 const MainNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     FacilityStatus: FacilityStatus,
     Classes: Classes,
+    Notices: Notices,
+    Register: Register,
   },
   {
     initialRouteName: "Home",

@@ -42,14 +42,7 @@ export default class Classes extends React.Component {
     super(props);
     const cellWidth = SCREEN_WIDTH / 4;
     this.state = {
-      tableHead: [
-        ["Monday"],
-        ["Tuesday"],
-        ["Wednesday"],
-        ["Thursday"],
-        ["Friday"],
-        ["Saturday"],
-      ],
+      tableHead: [],
       tableHeaderIn: ["Time", "Instructor", "Class", "Status"],
       widthArr: [cellWidth, cellWidth, cellWidth, cellWidth],
       data: [],
@@ -58,43 +51,53 @@ export default class Classes extends React.Component {
   }
 
   componentDidMount() {
+    classRef.on("child_added", (childSnapshot) => {
+      this.initFetch();
+    });
+    classRef.on("child_changed", (childSnapshot) => {
+      this.initFetch();
+    });
+    classRef.on("child_removed", (childSnapshot) => {
+      this.initFetch();
+    });
+    this.initFetch();
+  }
+
+  initFetch() {
     const days = [
       "Monday",
-      "Tuseday",
+      "Tuesday",
       "Wednesday",
       "Thursday",
       "Friday",
       "Saturday",
     ];
-    const fetchedData = this.state.data;
+    const fetchedData = [];
+    let fetchedDays = [];
     days.forEach((day) => {
-      this.fetchData(day, fetchedData);
+      this.fetchData(day, fetchedData, fetchedDays);
     });
   }
-
-  fetchData(day, fetchedData) {
+  fetchData(day, fetchedData, fetchedDays) {
     const classes = [];
     try {
-      classRef.child(day).on("value", (childSnapshot) => {
+      classRef.child(day).once("value", (childSnapshot) => {
         const cls = childSnapshot.val();
         if (cls != null) {
+          if (!fetchedDays.includes(day)) fetchedDays.push(day);
           const vals = Object.keys(cls).map((key) => cls[key]);
           vals.forEach((val) => {
             const c1 = [val.time, val.instructor, val.class, val.status];
             classes.push(c1);
           });
           fetchedData.push(classes);
+          let tableHeadData = fetchedDays.map((m) => {
+            return [m];
+          });
           this.setState({
             data: fetchedData,
             loaded: true,
-          });
-        } else {
-          let days = this.state.tableHead;
-          days = days.filter(function (value, index, arr) {
-            return value != day;
-          });
-          this.setState({
-            tableHead: days,
+            tableHead: tableHeadData,
           });
         }
       });
@@ -171,7 +174,7 @@ export default class Classes extends React.Component {
     const data = this.state.data;
     const state = this.state;
 
-    elements = [];
+    let elements = [];
     for (let i = 0; i < data.length; i++) {
       const dt = data[i];
       const day = days[i];

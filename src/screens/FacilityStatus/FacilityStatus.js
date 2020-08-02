@@ -37,6 +37,7 @@ export default class FacilityStatus extends React.Component {
       traffic: data,
       id: item,
       loaded: false,
+      updatedAt: "",
     };
   }
 
@@ -55,6 +56,7 @@ export default class FacilityStatus extends React.Component {
         this.setState({
           traffic: tr,
           loaded: true,
+          updatedAt: ld[ld.length - 1],
         });
       });
     } else {
@@ -70,6 +72,7 @@ export default class FacilityStatus extends React.Component {
         this.setState({
           traffic: tr,
           loaded: true,
+          updatedAt: ld[ld.length - 1],
         });
       });
     }
@@ -129,6 +132,7 @@ export default class FacilityStatus extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <Text style={styles.h1}>{title}</Text>
+        <Text style={styles.h3}>Last Updated At: {this.state.updatedAt}</Text>
         <View style={styles.facilityStatusContainer}>
           <Text style={styles.h4}>Green: 1-10, Amber: 11-20, Red: 20+</Text>
           <FlatList

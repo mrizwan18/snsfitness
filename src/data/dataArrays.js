@@ -23,11 +23,6 @@ export const options = [
     icon: require("../../assets/icons/register.png"),
   },
   {
-    optionId: 4,
-    title: "Membership",
-    icon: require("../../assets/icons/member.png"),
-  },
-  {
     optionId: 5,
     title: "Football",
     icon: require("../../assets/icons/football.png"),
@@ -41,11 +36,6 @@ export const options = [
     optionId: 7,
     title: "Timings",
     icon: require("../../assets/icons/timeing.png"),
-  },
-  {
-    optionId: 8,
-    title: "Info",
-    icon: require("../../assets/icons/info.png"),
   },
 ];
 

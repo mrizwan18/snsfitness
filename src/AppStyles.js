@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 import { colors } from "../src/data/colors";
+import { color } from "react-native-reanimated";
 // screen sizing
 const { width, height } = Dimensions.get("window");
 // orientation must fixed
@@ -59,6 +60,7 @@ export const FacilityCard = StyleSheet.create({
     width: "40%",
     fontSize: 22,
     fontWeight: "bold",
+    fontFamily: "Roboto",
   },
   facilityStatusColor: {
     width: "24%",
@@ -103,6 +105,8 @@ export const FacilityCard = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: "bold",
+    fontFamily: "Roboto",
+
     textAlign: "center",
     color: colors.white,
     marginTop: 3,
@@ -110,11 +114,11 @@ export const FacilityCard = StyleSheet.create({
     marginLeft: 5,
   },
   h1: {
-    marginTop: 20,
     fontSize: 40,
     color: colors.black,
     fontWeight: "bold",
     textAlign: "center",
+    fontFamily: "Roboto",
   },
   h2: {
     marginTop: 20,
@@ -122,18 +126,22 @@ export const FacilityCard = StyleSheet.create({
     color: colors.black,
     fontWeight: "bold",
     textAlign: "center",
+    fontFamily: "Roboto",
   },
   h3: {
     fontSize: 16,
     color: colors.black,
     fontWeight: "bold",
     textAlign: "center",
+    fontFamily: "Roboto",
   },
   h4: {
     fontSize: 12,
     color: colors.black,
     fontWeight: "bold",
     textAlign: "right",
+    fontFamily: "Roboto",
+
     marginRight: 40,
   },
   optionIcon: {
@@ -144,6 +152,8 @@ export const FacilityCard = StyleSheet.create({
     textAlign: "center",
     color: colors.white,
     fontWeight: "bold",
+    fontFamily: "Roboto",
+
     fontSize: 16,
     textTransform: "uppercase",
   },
@@ -171,19 +181,95 @@ export const FacilityCard = StyleSheet.create({
   tableTextHeaderName: {
     textAlign: "center",
     fontWeight: "bold",
+    fontFamily: "Roboto",
+
     fontSize: 36,
     color: colors.white,
   },
   tableTextHeader: {
     textAlign: "center",
     fontWeight: "bold",
+    fontFamily: "Roboto",
+
     color: colors.white,
   },
   tableDataWrapper: {
     marginTop: -1,
+    marginBottom: 20,
   },
   tableRow: {
     height: 40,
     backgroundColor: "#E7E6E1",
+  },
+  notiContainer: {
+    flex: 1,
+    alignItems: "center",
+  },
+  notification: {
+    borderRadius: 15,
+    backgroundColor: colors.primary3,
+    padding: 14,
+    margin: 8,
+    width: SCREEN_WIDTH - 50,
+    flex: 1,
+    position: "relative",
+  },
+  notificationTime: {
+    // position: "absolute",
+    // left: 15,
+    // top: 10,
+    color: colors.white,
+    fontWeight: "200",
+    fontFamily: "Roboto",
+  },
+  notificationTitle: {
+    // position: "absolute",
+    // left: 15,
+    // top: 50,
+    color: colors.white,
+    fontWeight: "bold",
+    fontFamily: "Roboto",
+    textTransform: "uppercase",
+    textDecorationLine: "underline",
+  },
+  notificationBody: {
+    // position: "absolute",
+    // left: 15,
+    // top: 70,
+    color: colors.white,
+    fontWeight: "500",
+    fontFamily: "Roboto",
+  },
+  formContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 10,
+    padding: 5,
+    flexWrap: "wrap",
+  },
+  input: {
+    width: "100%",
+    borderWidth: 1,
+    borderColor: "#ddd",
+    padding: 10,
+    fontSize: 18,
+    borderRadius: 6,
+    marginTop: 10,
+  },
+  button: {
+    backgroundColor: colors.primary3,
+    color: "white",
+    padding: 15,
+    borderRadius: 12,
+    flex: 1,
+    marginTop: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  label: {
+    fontWeight: "bold",
+    alignSelf: "flex-start",
+    fontFamily: "Roboto",
   },
 });

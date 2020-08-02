@@ -1,8 +1,8 @@
 import AppContainer from "./src/navigations/AppNavigation";
-import { Notifications, Updates } from "expo";
+import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as firebase from "firebase";
 
 // Initialize Firebase
@@ -21,39 +21,82 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
+
 const rootRef = firebase.database().ref("expoTokens/" + Constants.deviceId);
 
-export default function App() {
-  useEffect(() => {
-    this.getPushNotificationPermissions();
-  });
+export default function App({ navigation }) {
+  const [expoPushToken, setExpoPushToken] = useState("");
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
 
-  getPushNotificationPermissions = async () => {
+  useEffect(() => {
+    registerForPushNotificationsAsync().then((token) => {
+      try {
+        setExpoPushToken(token);
+        rootRef.set(token);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+
+    // This listener is fired whenever a notification is received while the app is foregrounded
+    notificationListener.current = Notifications.addNotificationReceivedListener(
+      (notification) => {
+        setNotification(notification);
+      }
+    );
+
+    // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        navigation.navigate("Notices");
+      }
+    );
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener);
+      Notifications.removeNotificationSubscription(responseListener);
+    };
+  }, []);
+
+  return <AppContainer />;
+}
+async function registerForPushNotificationsAsync() {
+  let token;
+  if (Constants.isDevice) {
     const { status: existingStatus } = await Permissions.getAsync(
       Permissions.NOTIFICATIONS
     );
     let finalStatus = existingStatus;
-
-    // only ask if permissions have not already been determined, because
-    // iOS won't necessarily prompt the user a second time.
     if (existingStatus !== "granted") {
-      // Android remote notification permissions are granted during the app
-      // install, so this will only ask on iOS
       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
       finalStatus = status;
     }
-
-    // Stop here if the user did not grant permissions
     if (finalStatus !== "granted") {
+      alert("Failed to get push token for push notification!");
       return;
     }
-    console.log(finalStatus);
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+  } else {
+    alert("Must use physical device for Push Notifications");
+  }
 
-    // Get the token that uniquely identifies this device
+  if (Platform.OS === "android") {
+    Notifications.setNotificationChannelAsync("default", {
+      name: "default",
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: "#FF231F7C",
+    });
+  }
 
-    token = await Notifications.getExpoPushTokenAsync();
-    rootRef.set(token);
-  };
-
-  return <AppContainer />;
+  return token;
 }
