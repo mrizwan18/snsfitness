@@ -47,10 +47,18 @@ export default class Classes extends React.Component {
       widthArr: [cellWidth, cellWidth, cellWidth, cellWidth],
       data: [],
       loaded: false,
+      check: true,
     };
   }
 
   componentDidMount() {
+    rootRef.once("value", (snapshot) => {
+      if (!snapshot.hasChild("classes")) {
+        this.setState({ loaded: true });
+      } else {
+        console.log("inside");
+      }
+    });
     classRef.on("child_added", (childSnapshot) => {
       this.initFetch();
     });
@@ -119,9 +127,9 @@ export default class Classes extends React.Component {
     };
   };
 
-  renderClasses(tableHead, tableData, state) {
+  renderClasses(tableHead, tableData, state, index) {
     return (
-      <SafeAreaView>
+      <View key={index}>
         <Table>
           <Row
             data={tableHead}
@@ -157,7 +165,7 @@ export default class Classes extends React.Component {
             </ScrollView>
           </View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     );
   }
 
@@ -173,18 +181,21 @@ export default class Classes extends React.Component {
     const days = this.state.tableHead;
     const data = this.state.data;
     const state = this.state;
+    let title = "";
+    if (data.length == 0) title = "There are no classes yet!";
 
     let elements = [];
     for (let i = 0; i < data.length; i++) {
       const dt = data[i];
       const day = days[i];
-      elements.push(this.renderClasses(day, dt, state));
+      elements.push(this.renderClasses(day, dt, state, i));
     }
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.h2}>{title}</Text>
         <Text style={styles.h1}>CLASSES</Text>
         <ScrollView>{elements}</ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }

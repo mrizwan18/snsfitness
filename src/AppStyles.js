@@ -272,4 +272,21 @@ export const FacilityCard = StyleSheet.create({
     alignSelf: "flex-start",
     fontFamily: "Roboto",
   },
+  timingContainer: {
+    flex: 1,
+    flexDirection: "row",
+    width: SCREEN_WIDTH - 100,
+    justifyContent: "space-around",
+    margin: 10,
+    marginTop: 0,
+    alignItems: "center",
+    height: 100,
+  },
+  mapContainer: {
+    flex: 5,
+    width: SCREEN_WIDTH,
+    justifyContent: "center",
+    padding: 20,
+    alignItems: "center",
+  },
 });

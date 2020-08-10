@@ -7,6 +7,8 @@ import FacilityStatus from "../screens/FacilityStatus/FacilityStatus";
 import Classes from "../screens/Classes/Classes";
 import Notices from "../screens/NoticesScreen/Notices";
 import Register from "../screens/Registration/Register";
+import OpeningTimes from "../screens/Timings/OpeningTimes";
+import FootballTime from "../screens/Football/FootballTime.js";
 
 const MainNavigator = createStackNavigator(
   {
@@ -15,6 +17,8 @@ const MainNavigator = createStackNavigator(
     Classes: Classes,
     Notices: Notices,
     Register: Register,
+    Timings: OpeningTimes,
+    Football: FootballTime,
   },
   {
     initialRouteName: "Home",

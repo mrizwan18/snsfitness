@@ -79,6 +79,25 @@ export default class Register extends React.Component {
     return Linking.openURL(url);
   }
 
+  generateBody(values) {
+    let output = "";
+    output += "<b>First Name: </b>" + values.fname + "<br>";
+    output += "<b>Last Name: </b>" + values.lname + "<br>";
+    output += "<b>Email: </b>" + values.email + "<br>";
+    output += "<b>Phone: </b>" + values.phone + "<br>";
+    output += "<b>Mobile Number: </b>" + values.mobile + "<br>";
+    output += "<b>Birth Date: </b>" + values.bdate + "<br>";
+    output += "<b>Address: </b>" + values.address + "<br>";
+    output += "<b>Postcode: </b>" + values.postcode + "<br>";
+    output +=
+      "<b>Health and Safety Conditions: </b>" + values.conditions + "<br>";
+    output += "<b>Kin's Name: </b>" + values.kinName + "<br>";
+    output += "<b>Kin's Contact: </b>" + values.kinContact + "<br>";
+    output += "<b>Kin's Doctor: </b>" + values.kinDoctor + "<br>";
+    output += "<b>Surgery: </b>" + values.kinSurgery + "<br>";
+    return output;
+  }
+
   render() {
     return (
       <ScrollView>
@@ -105,18 +124,23 @@ export default class Register extends React.Component {
               health_safety_conditions: 0,
               fire: [{ label: "YES", value: 1 }],
               member: "",
+              conditions: "",
+              kinName: "",
+              kinContact: "",
+              kinDoctor: "",
+              kinSurgery: "",
             }}
             validationSchema={reviewSchema}
             onSubmit={(values, actions) => {
-              let body = JSON.stringify(values, null, 2);
+              let body = this.generateBody(values);
               actions.resetForm();
               this.sendEmail(
-                "rizwanshafique07@gmail.com",
+                "snsreg1@gmail.com",
                 "Registration form of " + values.fname + " " + values.lname,
-                body
+                "<html><body>" + body + "</body></html>"
               ).then(() => {
-                alert(
-                  "Registration info successfully sent to rizwanshafique07@gmail.com "
+                console.log(
+                  "Registration info successfully sent to snsreg1@gmail.com "
                 );
               });
             }}
@@ -296,7 +320,7 @@ export default class Register extends React.Component {
                   }}
                 />
                 <Text style={styles.h3}>
-                  if yes please state which of the above conditions apply.
+                  If yes please state which of the above conditions apply.
                 </Text>
                 <TextInput
                   style={styles.input}
