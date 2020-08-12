@@ -35,6 +35,7 @@ export default class FacilityStatus extends React.Component {
     const data = item == 1 ? facilityStatus.men : facilityStatus.ladies;
     this.state = {
       traffic: data,
+      facilities: [],
       id: item,
       loaded: false,
       updatedAt: "",
@@ -43,37 +44,55 @@ export default class FacilityStatus extends React.Component {
 
   componentDidMount() {
     if (this.state.id == 2) {
-      const tr = this.state.traffic;
-      ladiesRef.on("value", (childSnapshot) => {
-        const ld = [];
-        childSnapshot.forEach((val) => {
-          ld.push(val.node_.value_);
-        });
-
-        for (let i = 0; i < tr.length; i++) {
-          tr[i].traffic = ld[i];
+      const tr = [];
+      let facilities = [];
+      let time = "";
+      ladiesRef.once("value", (childSnapshot) => {
+        const cls = childSnapshot.val();
+        if (cls != null) {
+          const vals = Object.keys(cls).map((key) => {
+            return cls[key];
+          });
+          vals.forEach((val, index) => {
+            if (index < vals.length - 1) {
+              const t1 = [val.status, val.color];
+              facilities.push(val.name);
+              tr.push(t1);
+            } else time = val;
+          });
+          this.setState({
+            traffic: tr,
+            loaded: true,
+            facilities: facilities,
+            updatedAt: time,
+          });
         }
-        this.setState({
-          traffic: tr,
-          loaded: true,
-          updatedAt: ld[ld.length - 1],
-        });
       });
     } else {
-      const tr = this.state.traffic;
-      menRef.on("value", (childSnapshot) => {
-        const ld = [];
-        childSnapshot.forEach((val) => {
-          ld.push(val.node_.value_);
-        });
-        for (let i = 0; i < tr.length; i++) {
-          tr[i].traffic = ld[i];
+      const tr = [];
+      let facilities = [];
+      let time = "";
+      menRef.once("value", (childSnapshot) => {
+        const cls = childSnapshot.val();
+        if (cls != null) {
+          const vals = Object.keys(cls).map((key) => {
+            return cls[key];
+          });
+          vals.forEach((val, index) => {
+            if (index < vals.length - 1) {
+              const t1 = [val.status, val.color];
+              facilities.push(val.name);
+              tr.push(t1);
+            } else time = val;
+          });
+          console.log(facilities, tr, time);
+          this.setState({
+            traffic: tr,
+            loaded: true,
+            facilities: facilities,
+            updatedAt: time,
+          });
         }
-        this.setState({
-          traffic: tr,
-          loaded: true,
-          updatedAt: ld[ld.length - 1],
-        });
       });
     }
   }
@@ -91,30 +110,24 @@ export default class FacilityStatus extends React.Component {
     };
   };
 
-  decideColor = (num) => {
-    if (num >= 1 && num <= 10) return styles.facilityStatusGreen;
-    if (num >= 11 && num <= 20) return styles.facilityStatusAmber;
-    if (num > 20) return styles.facilityStatusRed;
+  decideColor = (clr) => {
+    if (clr.toLowerCase() === "green") return styles.facilityStatusGreen;
+    if (clr.toLowerCase() === "amber") return styles.facilityStatusAmber;
+    if (clr.toLowerCase() === "red") return styles.facilityStatusRed;
   };
 
-  decideStatus = (num) => {
-    if (num >= 1 && num <= 10) return "Open";
-    if (num >= 11 && num <= 20) return "Moderate";
-    if (num > 20) return "Closed";
-  };
-
-  renderStatus = ({ item }) => (
-    <TouchableOpacity>
-      <View style={styles.facilityStatus}>
-        <Text style={styles.facilityStatusTitle}>{item.title}</Text>
-        <View
-          style={[styles.facilityStatusColor, this.decideColor(item.traffic)]}
-        ></View>
-        <View style={styles.facilityStatusText}>
-          <Text style={styles.h3}>{this.decideStatus(item.traffic)}</Text>
-        </View>
+  renderStatus = ({ item, index }) => (
+    <View style={styles.facilityStatus}>
+      <Text style={styles.facilityStatusTitle}>
+        {this.state.facilities[index]}
+      </Text>
+      <View
+        style={[styles.facilityStatusColor, this.decideColor(item[1])]}
+      ></View>
+      <View style={styles.facilityStatusText}>
+        <Text style={styles.h3}>{item[0]}</Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 
   render() {
@@ -141,7 +154,7 @@ export default class FacilityStatus extends React.Component {
             numColumns={1}
             data={data}
             renderItem={this.renderStatus}
-            keyExtractor={(item) => `${item.statusId}`}
+            keyExtractor={(item, index) => `${item.statusId}`}
           />
         </View>
       </SafeAreaView>

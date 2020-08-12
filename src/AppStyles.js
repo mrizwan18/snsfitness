@@ -55,6 +55,8 @@ export const FacilityCard = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   facilityStatusTitle: {
     width: "40%",
@@ -142,7 +144,7 @@ export const FacilityCard = StyleSheet.create({
     textAlign: "right",
     fontFamily: "Roboto",
 
-    marginRight: 40,
+    marginRight: 30,
   },
   optionIcon: {
     height: 30,
