@@ -72,7 +72,7 @@ export default class FootballTime extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <Text style={styles.h2}>{title}</Text>
-        <Text style={styles.h1}>FOOTBALL AVAILABILITY SLOTS</Text>
+        <Text style={styles.h1}>FOOTBALL TIMES AVAILABLE</Text>
         <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
           <Row
             data={state.tableHead}

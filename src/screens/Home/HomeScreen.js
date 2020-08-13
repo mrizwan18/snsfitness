@@ -41,7 +41,7 @@ export default class HomeScreen extends React.Component {
     <View style={styles.option}>
       <TouchableOpacity
         underlayColor="rgba(73,182,77,1,0.9)"
-        onPress={() => this.onPressOptions(item.title)}
+        onPress={() => this.onPressOptions(item.nav)}
       >
         <Text style={styles.optionTitle}>{item.title}</Text>
       </TouchableOpacity>
@@ -51,7 +51,13 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.h1}>WELCOME</Text>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require("../../../assets/logo.png")}
+            style={styles.logo}
+          />
+          <Text style={styles.h1}>WELCOME</Text>
+        </View>
         <Text style={styles.h2}>Live Facilities Status</Text>
         <View style={styles.facilityContainer}>
           <FlatList

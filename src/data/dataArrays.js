@@ -13,22 +13,27 @@ export const options = [
   {
     optionId: 2,
     title: "Classes",
+    nav: "Classes",
   },
   {
     optionId: 3,
     title: "Register",
+    nav: "Register",
   },
   {
     optionId: 5,
     title: "Football",
+    nav: "Football",
   },
   {
     optionId: 6,
     title: "Notices",
+    nav: "Notices",
   },
   {
     optionId: 7,
-    title: "Timings",
+    title: "Opening Times",
+    nav: "Times",
   },
 ];
 

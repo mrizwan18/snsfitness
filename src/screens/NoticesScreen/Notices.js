@@ -1,7 +1,6 @@
 import React from "react";
 import { FlatList, Text, View, Image } from "react-native";
 import styles from "./styles";
-import BackButton from "../../components/BackButton/BackButton";
 import * as firebase from "firebase";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -23,7 +22,7 @@ if (!firebase.apps.length) {
 }
 
 const rootRef = firebase.database().ref();
-const notiRef = rootRef.child("notifications/").orderByKey();
+const notiRef = rootRef.child("notifications/");
 
 export default class FacilityStatus extends React.Component {
   constructor(props) {
@@ -37,7 +36,7 @@ export default class FacilityStatus extends React.Component {
   componentDidMount() {
     const notices = [];
     try {
-      notiRef.once("value", (childSnapshot) => {
+      notiRef.orderByChild("time").once("value", (childSnapshot) => {
         const cls = childSnapshot.val();
         if (cls != null) {
           const vals = Object.keys(cls).map((key) => cls[key]);
@@ -55,19 +54,6 @@ export default class FacilityStatus extends React.Component {
     }
   }
 
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: "Home",
-      headerLeft: (
-        <BackButton
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-      ),
-    };
-  };
-
   renderNotices = ({ item }) => (
     <View style={styles.notification}>
       <Text style={styles.notificationTime}>{item[0]}</Text>
@@ -77,21 +63,17 @@ export default class FacilityStatus extends React.Component {
   );
 
   render() {
-    const data = this.state.notices.reverse();
-    let title = "";
-    if (data.length == 0) title = "There are no notices yet!";
-    else title = "There are " + data.length + " notices";
+    const data = this.state.notices;
     return (
       <SafeAreaView style={styles.notiContainer}>
         <Text style={styles.h1}>NOTICES</Text>
-        <Text style={styles.h2}>{title}</Text>
         <FlatList
           vertical
           showsVerticalScrollIndicator={false}
           numColumns={1}
           data={data}
           renderItem={this.renderNotices}
-          keyExtractor={(item) => `${item.time}`}
+          keyExtractor={(item, index) => `${index}`}
         />
       </SafeAreaView>
     );

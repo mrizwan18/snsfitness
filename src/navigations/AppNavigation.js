@@ -17,7 +17,7 @@ const MainNavigator = createStackNavigator(
     Classes: Classes,
     Notices: Notices,
     Register: Register,
-    Timings: OpeningTimes,
+    Times: OpeningTimes,
     Football: FootballTime,
   },
   {

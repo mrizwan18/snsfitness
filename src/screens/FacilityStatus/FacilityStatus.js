@@ -1,11 +1,10 @@
 import React from "react";
-import { FlatList, Text, View, TouchableHighlight, Image } from "react-native";
+import { FlatList, Text, View, Image } from "react-native";
 import styles from "./styles";
 import { facilityStatus } from "../../data/dataArrays";
-import BackButton from "../../components/BackButton/BackButton";
+import { colors } from "../../data/colors";
 import * as firebase from "firebase";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 // Initialize Firebase
 var firebaseConfig = {
@@ -85,7 +84,6 @@ export default class FacilityStatus extends React.Component {
               tr.push(t1);
             } else time = val;
           });
-          console.log(facilities, tr, time);
           this.setState({
             traffic: tr,
             loaded: true,
@@ -97,32 +95,16 @@ export default class FacilityStatus extends React.Component {
     }
   }
 
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: "Home",
-      headerLeft: (
-        <BackButton
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-      ),
-    };
-  };
-
-  decideColor = (clr) => {
-    if (clr.toLowerCase() === "green") return styles.facilityStatusGreen;
-    if (clr.toLowerCase() === "amber") return styles.facilityStatusAmber;
-    if (clr.toLowerCase() === "red") return styles.facilityStatusRed;
-  };
-
   renderStatus = ({ item, index }) => (
-    <View style={styles.facilityStatus}>
+    <View style={styles.facilityStatus} key={index}>
       <Text style={styles.facilityStatusTitle}>
         {this.state.facilities[index]}
       </Text>
       <View
-        style={[styles.facilityStatusColor, this.decideColor(item[1])]}
+        style={[
+          styles.facilityStatusColor,
+          { backgroundColor: colors[item[1].toLowerCase()] },
+        ]}
       ></View>
       <View style={styles.facilityStatusText}>
         <Text style={styles.h3}>{item[0]}</Text>
@@ -142,19 +124,19 @@ export default class FacilityStatus extends React.Component {
     const data = this.state.traffic;
     const title =
       "Live " + (this.state.id == 1 ? "Men's" : "Ladies") + " Facility";
+    console.log(colors["green"]);
     return (
       <SafeAreaView style={styles.container}>
         <Text style={styles.h1}>{title}</Text>
         <Text style={styles.h3}>Last Updated At: {this.state.updatedAt}</Text>
         <View style={styles.facilityStatusContainer}>
-          <Text style={styles.h4}>Green: 1-10, Amber: 11-20, Red: 20+</Text>
           <FlatList
             vertical
             showsVerticalScrollIndicator={false}
             numColumns={1}
             data={data}
             renderItem={this.renderStatus}
-            keyExtractor={(item, index) => `${item.statusId}`}
+            keyExtractor={(item, index) => `${index}`}
           />
         </View>
       </SafeAreaView>

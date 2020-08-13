@@ -8,7 +8,6 @@ import {
   ScrollView,
 } from "react-native";
 import styles from "./styles";
-import BackButton from "../../components/BackButton/BackButton";
 import * as firebase from "firebase";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Table, TableWrapper, Row } from "react-native-table-component";
@@ -113,19 +112,6 @@ export default class Classes extends React.Component {
       console.error(error);
     }
   }
-
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: "Home",
-      headerLeft: (
-        <BackButton
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-      ),
-    };
-  };
 
   renderClasses(tableHead, tableData, state, index) {
     return (

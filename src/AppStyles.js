@@ -23,6 +23,17 @@ export const FacilityCard = StyleSheet.create({
     flexDirection: "row",
     margin: 10,
   },
+  logoContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    marginBottom: -50,
+  },
+  logo: {
+    height: 80,
+    width: 80,
+  },
   optionsContainer: {
     flex: 2,
     justifyContent: "space-between",
