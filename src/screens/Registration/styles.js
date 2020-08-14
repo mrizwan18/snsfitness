@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
   },
   label: FacilityCard.label,
+  formInput: FacilityCard.formInput,
 });
 
 export default styles;

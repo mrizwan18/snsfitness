@@ -55,8 +55,18 @@ export default class FacilityStatus extends React.Component {
           vals.forEach((val, index) => {
             if (index < vals.length - 1) {
               const t1 = [val.status, val.color];
-              facilities.push(val.name);
-              tr.push(t1);
+              if (val.name.toLowerCase().includes("gym") && index != 0) {
+                console.log("yes");
+                let x1 = tr[0];
+                tr[0] = t1;
+                tr.push(x1);
+                let x2 = facilities[0];
+                facilities[0] = val.name;
+                facilities.push(x2);
+              } else {
+                tr.push(t1);
+                facilities.push(val.name);
+              }
             } else time = val;
           });
           this.setState({
@@ -80,8 +90,18 @@ export default class FacilityStatus extends React.Component {
           vals.forEach((val, index) => {
             if (index < vals.length - 1) {
               const t1 = [val.status, val.color];
-              facilities.push(val.name);
-              tr.push(t1);
+              if (val.name.toLowerCase().includes("gym") && index != 0) {
+                console.log("yes");
+                let x1 = tr[0];
+                tr[0] = t1;
+                tr.push(x1);
+                let x2 = facilities[0];
+                facilities[0] = val.name;
+                facilities.push(x2);
+              } else {
+                tr.push(t1);
+                facilities.push(val.name);
+              }
             } else time = val;
           });
           this.setState({
@@ -123,8 +143,7 @@ export default class FacilityStatus extends React.Component {
 
     const data = this.state.traffic;
     const title =
-      "Live " + (this.state.id == 1 ? "Men's" : "Ladies") + " Facility";
-    console.log(colors["green"]);
+      "Live " + (this.state.id == 1 ? "Men's" : "Ladies") + " Facilities";
     return (
       <SafeAreaView style={styles.container}>
         <Text style={styles.h1}>{title}</Text>

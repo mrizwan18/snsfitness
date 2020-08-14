@@ -78,6 +78,7 @@ export default class Classes extends React.Component {
       "Thursday",
       "Friday",
       "Saturday",
+      "Sunday",
     ];
     const fetchedData = [];
     let fetchedDays = [];
@@ -142,6 +143,7 @@ export default class Classes extends React.Component {
                     widthArr={this.state.widthArr}
                     style={[
                       styles.tableRow,
+                      { flex: 1 },
                       index % 2 && { backgroundColor: "#F7F6E7" },
                     ]}
                     textStyle={styles.tableText}

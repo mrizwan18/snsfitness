@@ -5,6 +5,7 @@ import { Table, Row, Rows } from "react-native-table-component";
 
 import styles from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView } from "react-native-gesture-handler";
 
 // Initialize Firebase
 var firebaseConfig = {
@@ -73,18 +74,20 @@ export default class FootballTime extends React.Component {
       <SafeAreaView style={styles.container}>
         <Text style={styles.h2}>{title}</Text>
         <Text style={styles.h1}>FOOTBALL TIMES AVAILABLE</Text>
-        <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
-          <Row
-            data={state.tableHead}
-            style={styles.tableHeaderName}
-            textStyle={styles.tableTextHeaderName}
-          />
-          <Rows
-            style={styles.tableRow}
-            data={state.timings}
-            textStyle={styles.h3}
-          />
-        </Table>
+        <ScrollView style={styles.tableDataWrapper}>
+          <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
+            <Row
+              data={state.tableHead}
+              style={styles.tableHeaderName}
+              textStyle={styles.tableTextHeaderName}
+            />
+            <Rows
+              style={styles.tableRow}
+              data={state.timings}
+              textStyle={styles.h3}
+            />
+          </Table>
+        </ScrollView>
       </SafeAreaView>
     );
   }

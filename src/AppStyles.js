@@ -52,6 +52,7 @@ export const FacilityCard = StyleSheet.create({
     borderWidth: 1.5,
     borderRadius: 15,
     justifyContent: "center",
+    alignItems: "center",
     marginTop: 20,
   },
   facilityStatusContainer: {
@@ -189,7 +190,8 @@ export const FacilityCard = StyleSheet.create({
   },
   tableText: {
     textAlign: "center",
-    fontWeight: "100",
+    fontWeight: "bold",
+    fontFamily: "Roboto",
   },
   tableTextHeaderName: {
     textAlign: "center",
@@ -211,8 +213,8 @@ export const FacilityCard = StyleSheet.create({
     marginBottom: 20,
   },
   tableRow: {
-    height: 40,
     backgroundColor: "#E7E6E1",
+    minHeight: 60,
   },
   notiContainer: {
     flex: 1,
@@ -255,11 +257,10 @@ export const FacilityCard = StyleSheet.create({
   },
   formContainer: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-between",
     margin: 10,
     padding: 5,
-    flexWrap: "wrap",
   },
   input: {
     width: "100%",
@@ -301,5 +302,10 @@ export const FacilityCard = StyleSheet.create({
     justifyContent: "center",
     padding: 20,
     alignItems: "center",
+  },
+  formInput: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
   },
 });
