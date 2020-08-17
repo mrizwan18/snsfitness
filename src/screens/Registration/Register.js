@@ -388,12 +388,6 @@ export default class Register extends React.Component {
                     {props.touched.kinSurgery && props.errors.kinSurgery}
                   </Text>
                 </View>
-                <View>
-                  <Text style={styles.h4}>
-                    I am aware of all the fire exits & where the first aid is
-                    kept & who is responsible.
-                  </Text>
-                </View>
 
                 <Text
                   onPress={this._handleOpenWithWebBrowser}
@@ -410,11 +404,6 @@ export default class Register extends React.Component {
                   <Text style={styles.h2}>Membership Terms & Conditions</Text>
                 </View>
                 <View>
-                  <Text style={styles.h4}>
-                    I have read, understood, and accepted the rules for
-                    membership.
-                  </Text>
-
                   <Text
                     onPress={this._handleOpenWithWebBrowserTerms}
                     style={{

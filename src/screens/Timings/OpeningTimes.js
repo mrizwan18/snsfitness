@@ -33,7 +33,12 @@ export default class OpeningTimes extends React.Component {
       loaded: false,
       timings: [],
       tableHead: ["DAY", "TIME"],
-      initialRegion: { latitude: 52.630675, longitude: -1.101599 },
+      initialRegion: {
+        latitude: 52.630675,
+        longitude: -1.101599,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
     };
   }
 

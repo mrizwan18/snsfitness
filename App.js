@@ -34,6 +34,7 @@ const rootRef = firebase.database().ref("expoTokens/" + Constants.deviceId);
 export default class App extends React.Component {
   componentDidMount() {
     this.registerForPushNotificationsAsync().then((token) => {
+      if (typeof token === "undefined" || token == null) return;
       try {
         rootRef.set(token);
       } catch (error) {
@@ -71,7 +72,7 @@ export default class App extends React.Component {
         finalStatus = status;
       }
       if (finalStatus !== "granted") {
-        alert("Failed to get push token for push notification!");
+        alert("You won't receive any notifications about the SnS Fitness");
         return;
       }
       token = (await Notifications.getExpoPushTokenAsync()).data;
