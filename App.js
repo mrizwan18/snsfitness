@@ -1,4 +1,6 @@
-import AppContainer from "./src/navigations/AppNavigation";
+// import AppContainer from "./src/navigations/AppNavigation";
+import HomeScreen from "./src/screens/Home/HomeScreen";
+
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
@@ -91,6 +93,6 @@ export default class App extends React.Component {
     return token;
   }
   render() {
-    return <AppContainer />;
+    return <HomeScreen />;
   }
 }
