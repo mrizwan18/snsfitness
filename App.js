@@ -50,7 +50,6 @@ export default class App extends React.Component {
   }
 
   _handleNotification = (notification) => {
-    this.setState({ notification: notification });
     this.props.navigation.navigate("Notices");
   };
 
