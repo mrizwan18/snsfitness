@@ -16,6 +16,18 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "zerzabar",
+            "project": "react-native",
+            "authToken": "c1332b3213b44245b058a927fc1a0deaa1ea51481d6f498ca0b4557de0d37eee"
+          }
+        }
+      ]
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },

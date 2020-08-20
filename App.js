@@ -1,11 +1,17 @@
-// import AppContainer from "./src/navigations/AppNavigation";
-import HomeScreen from "./src/screens/Home/HomeScreen";
-
+import AppContainer from "./src/navigations/AppNavigation";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import React from "react";
 import * as firebase from "firebase";
+import * as Sentry from "sentry-expo";
+
+Sentry.init({
+  dsn:
+    "https://a22d4cc60588448d9c9a734bcd7d6caf@o436778.ingest.sentry.io/5398411",
+  enableInExpoDevelopment: true,
+  debug: true,
+});
 
 // Initialize Firebase
 var firebaseConfig = {
@@ -93,6 +99,6 @@ export default class App extends React.Component {
     return token;
   }
   render() {
-    return <HomeScreen />;
+    return <AppContainer />;
   }
 }
