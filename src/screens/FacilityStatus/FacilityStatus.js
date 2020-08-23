@@ -6,17 +6,7 @@ import { colors } from "../../data/colors";
 import * as firebase from "firebase";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-// Initialize Firebase
-var firebaseConfig = {
-  apiKey: "AIzaSyD9SutOi8sWvbN5N9AX-h9M-fKHMlJHvL0",
-  authDomain: "snsfitness-4afbb.firebaseapp.com",
-  databaseURL: "https://snsfitness-4afbb.firebaseio.com",
-  projectId: "snsfitness-4afbb",
-  storageBucket: "snsfitness-4afbb.appspot.com",
-  messagingSenderId: "439732742424",
-  appId: "1:439732742424:web:2d6460824fab852e25566d",
-  measurementId: "G-JYNKX65MGK",
-};
+var firebaseConfig = require("..//..//..//config").firebaseConfig;
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -56,7 +46,6 @@ export default class FacilityStatus extends React.Component {
             if (index < vals.length - 1) {
               const t1 = [val.status, val.color];
               if (val.name.toLowerCase().includes("gym") && index != 0) {
-                console.log("yes");
                 let x1 = tr[0];
                 tr[0] = t1;
                 tr.push(x1);
@@ -91,7 +80,6 @@ export default class FacilityStatus extends React.Component {
             if (index < vals.length - 1) {
               const t1 = [val.status, val.color];
               if (val.name.toLowerCase().includes("gym") && index != 0) {
-                console.log("yes");
                 let x1 = tr[0];
                 tr[0] = t1;
                 tr.push(x1);

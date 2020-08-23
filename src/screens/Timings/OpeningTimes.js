@@ -7,17 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./styles";
 import MapView, { Marker } from "react-native-maps";
 
-// Initialize Firebase
-var firebaseConfig = {
-  apiKey: "AIzaSyD9SutOi8sWvbN5N9AX-h9M-fKHMlJHvL0",
-  authDomain: "snsfitness-4afbb.firebaseapp.com",
-  databaseURL: "https://snsfitness-4afbb.firebaseio.com",
-  projectId: "snsfitness-4afbb",
-  storageBucket: "snsfitness-4afbb.appspot.com",
-  messagingSenderId: "439732742424",
-  appId: "1:439732742424:web:2d6460824fab852e25566d",
-  measurementId: "G-JYNKX65MGK",
-};
+var firebaseConfig = require("..//..//..//config").firebaseConfig;
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -82,7 +72,6 @@ export default class OpeningTimes extends React.Component {
 
     let title = "";
     if (state.timings.length == 0) title = "There are no timings added yet!";
-    console.log(state.timings);
     return (
       <SafeAreaView style={styles.container}>
         <Text style={styles.h2}>{title}</Text>

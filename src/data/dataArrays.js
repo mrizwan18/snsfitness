@@ -1,11 +1,11 @@
 export const facilities = [
   {
     facilityId: 1,
-    title: "Men's Facilities",
+    title: "Men's\n Facilities",
   },
   {
     facilityId: 2,
-    title: "Ladies Facilities",
+    title: "Ladies\n Facilities",
   },
 ];
 

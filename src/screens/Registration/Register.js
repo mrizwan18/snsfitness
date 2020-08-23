@@ -1,17 +1,6 @@
 import React from "react";
-import {
-  Button,
-  TextInput,
-  View,
-  Text,
-  FlatList,
-  TouchableHighlight,
-} from "react-native";
-import RadioForm, {
-  RadioButton,
-  RadioButtonInput,
-  RadioButtonLabel,
-} from "react-native-simple-radio-button";
+import { TextInput, View, Text, TouchableHighlight } from "react-native";
+import RadioForm from "react-native-simple-radio-button";
 import * as WebBrowser from "expo-web-browser";
 
 import styles from "./styles";
@@ -138,6 +127,9 @@ export default class Register extends React.Component {
                 "Registration form of " + values.fname + " " + values.lname,
                 "<html><body>" + body + "</body></html>"
               ).then(() => {
+                alert(
+                  "Registration info successfully sent to snsreg1@gmail.com "
+                );
                 console.log(
                   "Registration info successfully sent to snsreg1@gmail.com "
                 );

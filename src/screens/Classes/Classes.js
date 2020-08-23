@@ -1,34 +1,16 @@
 import React from "react";
-import {
-  FlatList,
-  Text,
-  View,
-  TouchableHighlight,
-  Image,
-  ScrollView,
-} from "react-native";
+import { Text, View, Image, ScrollView } from "react-native";
 import styles from "./styles";
 import * as firebase from "firebase";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Table, TableWrapper, Row } from "react-native-table-component";
+import { Table, Row } from "react-native-table-component";
 import { Dimensions } from "react-native";
 // screen sizing
 const { width, height } = Dimensions.get("window");
 // orientation must fixed
 const SCREEN_WIDTH = width < height ? width : height;
 
-// Initialize Firebase
-var firebaseConfig = {
-  apiKey: "AIzaSyD9SutOi8sWvbN5N9AX-h9M-fKHMlJHvL0",
-  authDomain: "snsfitness-4afbb.firebaseapp.com",
-  databaseURL: "https://snsfitness-4afbb.firebaseio.com",
-  projectId: "snsfitness-4afbb",
-  storageBucket: "snsfitness-4afbb.appspot.com",
-  messagingSenderId: "439732742424",
-  appId: "1:439732742424:web:2d6460824fab852e25566d",
-  measurementId: "G-JYNKX65MGK",
-};
-
+var firebaseConfig = require("..//..//..//config").firebaseConfig;
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
@@ -54,8 +36,6 @@ export default class Classes extends React.Component {
     rootRef.once("value", (snapshot) => {
       if (!snapshot.hasChild("classes")) {
         this.setState({ loaded: true });
-      } else {
-        console.log("inside");
       }
     });
     classRef.on("child_added", (childSnapshot) => {

@@ -1,5 +1,4 @@
 import { createAppContainer } from "react-navigation";
-import { createDrawerNavigator } from "react-navigation-drawer";
 import { createStackNavigator } from "react-navigation-stack";
 
 import HomeScreen from "../screens/Home/HomeScreen";
@@ -33,9 +32,7 @@ const MainNavigator = createStackNavigator(
     }),
   }
 );
-const DrawerStack = createDrawerNavigator({
-  Main: MainNavigator,
-});
-export default AppContainer = createAppContainer(DrawerStack);
+
+export default AppContainer = createAppContainer(MainNavigator);
 
 console.disableYellowBox = true;

@@ -6,18 +6,7 @@ import { Table, Row, Rows } from "react-native-table-component";
 import styles from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
-
-// Initialize Firebase
-var firebaseConfig = {
-  apiKey: "AIzaSyD9SutOi8sWvbN5N9AX-h9M-fKHMlJHvL0",
-  authDomain: "snsfitness-4afbb.firebaseapp.com",
-  databaseURL: "https://snsfitness-4afbb.firebaseio.com",
-  projectId: "snsfitness-4afbb",
-  storageBucket: "snsfitness-4afbb.appspot.com",
-  messagingSenderId: "439732742424",
-  appId: "1:439732742424:web:2d6460824fab852e25566d",
-  measurementId: "G-JYNKX65MGK",
-};
+var firebaseConfig = require("..//..//..//config").firebaseConfig;
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);

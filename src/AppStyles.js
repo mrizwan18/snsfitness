@@ -117,7 +117,7 @@ export const FacilityCard = StyleSheet.create({
     marginTop: 20,
   },
   title: {
-    fontSize: 32,
+    fontSize: 26,
     fontWeight: "bold",
     fontFamily: "Roboto",
 

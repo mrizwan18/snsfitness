@@ -63,3 +63,8 @@ typings/
 .expo/packager-info.json
 .expo/settings.json
 package-lock.json
+dist/
+.expo/
+.vscode/
+.expo-shared/
+src/navigations/dist/

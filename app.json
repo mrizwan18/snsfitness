@@ -37,6 +37,9 @@
       "buildNumber": "1.0.0",
       "config": {
         "googleMapsApiKey": "AIzaSyBuErk2_ht-65wQ3_I6ZCDj55WRYnP5q1E"
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses the location to show you exact location of SnS Fitness"
       }
     },
     "android": {
