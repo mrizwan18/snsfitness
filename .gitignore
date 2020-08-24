@@ -68,3 +68,4 @@ dist/
 .vscode/
 .expo-shared/
 src/navigations/dist/
+config.js
