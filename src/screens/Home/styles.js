@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
   h2: FacilityCard.h2,
   option: FacilityCard.option,
   optionIcon: FacilityCard.optionIcon,
+  socialIcon: FacilityCard.socialIcon,
   optionTitle: FacilityCard.optionTitle,
+  socialMediaContainer: FacilityCard.socialMediaContainer,
 });
 
 export default styles;

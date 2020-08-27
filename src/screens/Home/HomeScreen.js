@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import styles from "./styles";
 import { facilities, options } from "../../data/dataArrays";
+import { social } from "../../data/socialMedia";
+import * as WebBrowser from "expo-web-browser";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -47,6 +49,16 @@ export default class HomeScreen extends React.Component {
     </View>
   );
 
+  renderSocialMedia(list) {
+    return list.map((el, index) => {
+      return (
+        <TouchableOpacity onPress={() => WebBrowser.openBrowserAsync(el.link)}>
+          <Image source={el.icon} key={index} style={styles.socialIcon} />
+        </TouchableOpacity>
+      );
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -77,6 +89,9 @@ export default class HomeScreen extends React.Component {
             renderItem={this.renderOptions}
             keyExtractor={(item) => `${item.optionId}`}
           />
+        </View>
+        <View style={styles.socialMediaContainer}>
+          {this.renderSocialMedia(social)}
         </View>
       </View>
     );

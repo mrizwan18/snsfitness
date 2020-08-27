@@ -49,11 +49,13 @@ export default class App extends React.Component {
   }
 
   _handleNotification = (notification) => {
-    this.props.navigation.navigate("Notices");
+    Notifications.setBadgeNumberAsync(1);
   };
 
   _handleNotificationResponse = (response) => {
-    this.props.navigation.navigate("Notices");
+    Notifications.setBadgeNumberAsync(0).then((res) => {
+      this.props.navigation.navigate("Notices");
+    });
   };
   async registerForPushNotificationsAsync() {
     let token;

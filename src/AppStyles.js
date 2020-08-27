@@ -35,12 +35,12 @@ export const FacilityCard = StyleSheet.create({
     width: 80,
   },
   optionsContainer: {
-    flex: 2,
+    flex: 1,
     justifyContent: "space-between",
     flexDirection: "row",
     flexWrap: "nowrap",
     margin: 10,
-    marginTop: 20,
+    marginTop: 0,
   },
   facility: {
     flex: 1,
@@ -307,5 +307,17 @@ export const FacilityCard = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
+  },
+  socialMediaContainer: {
+    flex: 0.5,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "flex-end",
+    padding: 10,
+    marginBottom: 20,
+  },
+  socialIcon: {
+    height: 50,
+    width: 50,
   },
 });
