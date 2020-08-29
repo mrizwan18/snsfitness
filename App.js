@@ -31,7 +31,14 @@ Notifications.setNotificationHandler({
 const rootRef = firebase.database().ref("expoTokens/" + Constants.deviceId);
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
+    if (Platform.OS === "ios") {
+      Notifications.setBadgeNumberAsync(0);
+    }
     this.registerForPushNotificationsAsync().then((token) => {
       if (typeof token === "undefined" || token == null) return;
       try {
@@ -41,21 +48,16 @@ export default class App extends React.Component {
       }
     });
 
-    Notifications.addNotificationReceivedListener(this._handleNotification);
-
     Notifications.addNotificationResponseReceivedListener(
       this._handleNotificationResponse
     );
   }
 
-  _handleNotification = (notification) => {
-    Notifications.setBadgeNumberAsync(1);
-  };
-
   _handleNotificationResponse = (response) => {
-    Notifications.setBadgeNumberAsync(0).then((res) => {
-      this.props.navigation.navigate("Notices");
-    });
+    if (Platform.OS === "ios") {
+      Notifications.setBadgeNumberAsync(0);
+    }
+    this.props.navigation.navigate("Notices");
   };
   async registerForPushNotificationsAsync() {
     let token;

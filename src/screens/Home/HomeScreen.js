@@ -10,7 +10,7 @@ import {
 import styles from "./styles";
 import { facilities, options } from "../../data/dataArrays";
 import { social } from "../../data/socialMedia";
-import * as WebBrowser from "expo-web-browser";
+import * as Linking from "expo-linking";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -52,7 +52,7 @@ export default class HomeScreen extends React.Component {
   renderSocialMedia(list) {
     return list.map((el, index) => {
       return (
-        <TouchableOpacity onPress={() => WebBrowser.openBrowserAsync(el.link)}>
+        <TouchableOpacity onPress={() => Linking.openURL(el.link)}>
           <Image source={el.icon} key={index} style={styles.socialIcon} />
         </TouchableOpacity>
       );
